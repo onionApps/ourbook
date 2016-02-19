@@ -16,3 +16,11 @@ Parameters:
 - n: name
 - t: timestamp
 - m: message
+
+Running the sample ChatBot
+```
+sudo apt-get install python
+sudo pip install web.py
+python chatbot.py 8080 chatbot-test.txt
+```
+... and now enable "ChatBot Mode" and set "ChatBot server" to where you are running it (eg. http://localhost:8080/).
