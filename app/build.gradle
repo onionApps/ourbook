@@ -12,8 +12,8 @@ android {
         //versionCode 5
         //versionName "5"
 
-        versionCode 600
-        versionName "v6"
+        versionCode 700
+        versionName "v7"
 
         minSdkVersion 14
 

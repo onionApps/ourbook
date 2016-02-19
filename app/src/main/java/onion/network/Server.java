@@ -71,8 +71,8 @@ public class Server {
 
     private void handleRequest(HttpServer.Request request, HttpServer.Response response) {
 
-        String path = request.getPath();
-        Uri uri = Uri.parse(path);
+        Uri uri = Uri.parse(request.getPath());
+        String path = uri.getPath();
 
         if (Settings.getPrefs(context).getBoolean("webprofile", true)) {
             if ("/".equals(path)) {
