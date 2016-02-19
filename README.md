@@ -41,12 +41,11 @@ Author: http://github.com/onionApps - jkrnk73uid7p5thz.onion - bitcoin:1kGXfWx8P
 
 ## Finding Friends
 - Meet them in real life and scan their QR code
-- Send them a standard invitation message via Email / SMS / instant messengers / etc. 
-- Post your Network.onion URL on the web
-- Search for other Network.onion users who have posted their URLs or IDs on the web
-- Share your Network.onion URL or ID on other social networks
-- Let them know your 16 character ID
-- Search the web for Network.onion FriendBots
+- Send them an invitation message (via Email, SMS, instant messenger, etc.)
+- Post your Network.onion URL on the web or on other social networks
+- Search for other Network.onion users who have posted their URLs or IDs
+- Tell people your 16 character Network.onion ID
+- Search the web for Network.onion FriendBots (profiles that automatically accept all friend requests) or run your own FriendBot (see below)
 
 
 
