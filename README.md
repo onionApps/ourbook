@@ -21,16 +21,15 @@ Network.onion is different! All your data is stored on your own device. No centr
 
 
 
-## Screenshots
-
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s0.png)
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s1.png)
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s2.png)
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s3.png)
 
 
+![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/network01edit.jpg)
 
-## Links
+
 
 http://play.google.com/store/apps/details?id=onion.network
 
