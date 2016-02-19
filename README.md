@@ -43,6 +43,8 @@ Author: http://github.com/onionApps - jkrnk73uid7p5thz.onion - bitcoin:1kGXfWx8P
 
 
 
+
+
 ## Building
 - Clone this repository
 - (Optionally, replace the included Tor binaries at /bin/ with your own and run /bin/pack.sh)
