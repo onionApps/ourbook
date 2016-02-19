@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="clearcache"
+        android:title="Clear Cache"
+        android:summary="Remove all cache data"
+        />
+
+    <CheckBoxPreference
+        android:key="notify"
+        android:defaultValue="true"
+        android:title="Notifications"
+        android:summary="Show a notification when a new message is received while the app is in the background"
+        />
+
+    <CheckBoxPreference
+        android:key="sound"
+        android:defaultValue="true"
+        android:title="Sounds"
+        android:summary="Play a sound when a new message is received"
+        />
+
+    <onion.network.ListPreferenceEx
+        android:key="acceptmessages"
+        android:defaultValue="friends"
+        android:entryValues="@array/acceptmessagesvalues"
+        android:entries="@array/acceptmessageslabels"
+        android:title="Accept Messages"
+        />
+    <!-- android:summary="Define who can send you private messages" -->
+
+    <CheckBoxPreference
+        android:key="webprofile"
+        android:defaultValue="true"
+        android:title="Web Profile"
+        android:summary="Allow a preview of your profile to be viewed using normal web browsers"
+        />
+
+
+
+    <PreferenceCategory
+        android:key="catfriendbot"
+        android:title="FriendBot"
+        >
+
+        <CheckBoxPreference
+            android:key="friendbot"
+            android:defaultValue="false"
+            android:title="Enable FriendBot Mode"
+            android:summary="Automatically accept all friend requests"
+            />
+
+    </PreferenceCategory>
+
+
+
+    <PreferenceCategory
+        android:key="catwallbot"
+        android:title="WallBot"
+        >
+
+        <CheckBoxPreference
+            android:key="wallbot"
+            android:defaultValue="false"
+            android:title="Enable WallBot Mode"
+            android:summary="Automatically create posts from RSS feed"
+            />
+
+        <!--
+        <onion.network.EditTextPreferenceUrl
+            android:key="wallbotfeed"
+            android:title="WallBot RSS Feed"
+            />
+            -->
+
+        <EditTextPreference
+            android:key="wallbotfeed"
+            android:title="WallBot RSS Feed"
+            android:summary="Fetched every WallBot Interval, if WallBot Mode is enabled, over a torified connection."
+            />
+
+        <ListPreference
+            android:key="wallbotinterval"
+            android:title="WallBot Interval"
+            android:defaultValue="600"
+            android:entryValues="@array/wallbotintervalvalues"
+            android:entries="@array/wallbotintervallabels"
+            android:summary="Update wall every %s"
+            />
+
+    </PreferenceCategory>
+
+
+
+    <PreferenceCategory
+        android:key="catchatbot"
+        android:title="ChatBot"
+        >
+
+        <CheckBoxPreference
+            android:key="chatbot"
+            android:defaultValue="false"
+            android:title="Enable ChatBot Mode"
+            android:summary="Automatically respond to chat messages"
+            />
+
+        <EditTextPreference
+            android:key="chatbotaddr"
+            android:title="ChatBot server"
+            android:summary="Address of the chat server to get responses from (if enabled). NOT torified to allow LAN / localhost."
+            />
+
+    </PreferenceCategory>
+
+
+
+
+    <PreferenceCategory
+        android:key="aboutcat"
+        android:title="About"
+        >
+
+        <Preference
+            android:key="licenses"
+            android:title="Third-Party Licenses"
+            android:summary="Licenses of third-party software used by this app"
+            />
+
+    </PreferenceCategory>
+
+
+
+
+
+</PreferenceScreen>

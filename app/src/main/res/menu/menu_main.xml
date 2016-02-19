@@ -1,0 +1,88 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="onion.network.MainActivity">
+
+
+
+
+
+
+
+    <item
+        android:id="@+id/action_add_friend"
+        android:title="Add Friend"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_friends"
+        android:title="Friend"
+        app:showAsAction="always|withText" />
+
+
+
+    <item
+        android:icon="@drawable/ic_sync_white_36dp"
+        android:id="@+id/action_refresh"
+        android:title="Refresh"
+        app:showAsAction="always" />
+
+
+
+
+
+
+
+    <item
+        android:id="@+id/action_menu_scan_qr"
+        android:title="Scan QR"
+        />
+
+    <item
+        android:id="@+id/action_menu_enter_id"
+        android:title="Enter ID"
+        />
+
+    <item
+        android:id="@+id/action_menu_show_my_qr"
+        android:title="Show QR"
+        />
+
+    <item
+        android:id="@+id/action_menu_show_my_id"
+        android:title="Show ID"
+        />
+
+    <item
+        android:id="@+id/action_menu_show_uri"
+        android:title="Show URI"
+        />
+
+    <item
+        android:id="@+id/action_menu_invite_friends"
+        android:title="Invite Friends"
+        />
+
+    <item
+        android:id="@+id/action_menu_rate"
+        android:title="Rate this app"
+        />
+
+    <item
+        android:id="@+id/action_menu_settings"
+        android:title="Settings"
+        />
+
+
+
+
+<!--
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+        -->
+
+</menu>

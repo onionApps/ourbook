@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Network.onion</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="invitation_text">%1$s\n\nLet\'s connect via Network.onion, a fully decentralized peer-to-peer social network!\n\nContact link\nnetwork.onion/%2$s/%3$s\n(click after installation to connect)\n\nID: %2$s\n(copy manually if the contact link isn\'t shown correctly)\n</string>
+
+
+
+    <string-array name="acceptmessagesvalues">
+        <item></item>
+        <item>friends</item>
+        <item>none</item>
+    </string-array>
+
+    <string-array name="acceptmessageslabels">
+        <item>Everyone</item>
+        <item>Only Friends</item>
+        <item>None</item>
+    </string-array>
+
+
+
+    <string-array name="wallbotintervalvalues">
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1800</item>
+        <item>3600</item>
+        <item>7200</item>
+    </string-array>
+
+    <string-array name="wallbotintervallabels">
+        <item>10s</item>
+        <item>20s</item>
+        <item>30s</item>
+        <item>1min</item>
+        <item>2min</item>
+        <item>5min</item>
+        <item>10min</item>
+        <item>30min</item>
+        <item>1h</item>
+        <item>2h</item>
+    </string-array>
+
+
+
+
+</resources>
