@@ -36,7 +36,7 @@ If "Accept Messages" is set to "None", messages aren't shown or saved, but are s
 You can also run Network.onion on VirtualBox
 - Get VirtualBox
 - Get Android-x86 4.0 eeepc (http://www.android-x86.org/download)
-- Create a Linux box ("Other Linux") and start or install Android
+- Create a Linux box ("Other Linux"), and start or install Android
 - Setup NAT to allow ADB (Network -> Advanced -> Port Redirection -> Guest Port = 5555, Host Port = 5555)
 - Install Android Debug Tools (eg. ``` sudo apt-get install android-tools-adb ```)
 - ``` adb connect localhost:5555 ```
