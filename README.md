@@ -6,7 +6,7 @@
 
 Conventional social networks store all user data on central servers. This leads to several issues. Information has to be sold to advertising companies to finance the centralized server infrastructure. Users are exposed to surveillance and censorship. In some cases, users are even subject to political persecution.
 
-Network.onion is different! All your data is stored on your own device. No central servers are needed. Devices communicate with each other over a distributed peer-to-peer network. All communication is anonymized and encrypted via Onion Routing (Tor).
+Network.onion is different! All your data is stored on your own device. No central servers are needed. Devices communicate with each other over a decentralized peer-to-peer network. All communication is anonymized and encrypted via Onion Routing (Tor).
 
 - Anonymous, peer-to-peer, fully decentralized
 - Data remains on the users' own devices
