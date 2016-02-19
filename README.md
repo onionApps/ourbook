@@ -23,7 +23,6 @@ Network.onion is different! All your data is stored on your own device. No centr
 - Private chat
 
 
-
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s0.png)
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s1.png)
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/s2.png)
@@ -42,6 +41,15 @@ Author: http://github.com/onionApps - jkrnk73uid7p5thz.onion - bitcoin:1kGXfWx8P
 
 
 
+
+## Finding Friends
+- Meet them in real life and scan their QR code
+- Send them a standard invitation message via Email / SMS / instant messengers / etc. 
+- Post your Network.onion URL on the web
+- Search for other Network.onion users who have posted their URLs or IDs on the web
+- Share your Network.onion URL or ID on other social networks
+- Let them know your 16 character ID
+- Search the web for Network.onion FriendBots
 
 
 
