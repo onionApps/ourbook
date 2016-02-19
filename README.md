@@ -1,3 +1,6 @@
+![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9-2-1.png)
+
+
 # Network.onion
 
 ### Fully distributed peer-to-peer social network using onion routing!
@@ -17,8 +20,6 @@ Network.onion is different! All your data is stored on your own device. No centr
 - Personal profile
 - Private chat
 
-
-![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9-2-1.png)
 
 
 ## Screenshots
