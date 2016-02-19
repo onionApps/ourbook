@@ -45,7 +45,7 @@ Author: http://github.com/onionApps - jkrnk73uid7p5thz.onion - bitcoin:1kGXfWx8P
 - Post your Network.onion URL on the web or on other social networks
 - Search for other Network.onion users who have posted their URLs or IDs
 - Tell people your 16 character Network.onion ID
-- Search the web for Network.onion FriendBots (profiles that automatically accept all friend requests) or run your own FriendBot (see below)
+- Search the web for Network.onion FriendBots (profiles that automatically accept all friend requests), or run your own FriendBot (see below)
 
 
 
