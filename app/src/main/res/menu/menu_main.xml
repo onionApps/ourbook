@@ -55,7 +55,7 @@
 
     <item
         android:id="@+id/action_menu_show_uri"
-        android:title="Show URI"
+        android:title="Show URL"
         />
 
     <item

@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/msg_from_friends"
         android:gravity="center"
-        android:text="Add as contact or change settings to receive messages."
+        android:text="Add as friend or change settings to receive messages."
         android:padding="12sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

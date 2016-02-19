@@ -384,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
                         "Enter ID",
                         "Show my QR",
                         "Show my ID",
+                        "Show URL",
                         "Invite Friends",
                 }, new DialogInterface.OnClickListener() {
                     @Override
@@ -394,7 +395,9 @@ public class MainActivity extends AppCompatActivity {
                         if (which == 2) showQR();
                         if (which == 3) showId();
 
-                        if (which == 4) inviteFriend();
+                        if (which == 4) showUri();
+
+                        if (which == 5) inviteFriend();
                     }
                 })
                 .show();
