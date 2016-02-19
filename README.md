@@ -1,3 +1,6 @@
+-- REPOSITORY UNDER CONSTRUCTION --
+
+
 # Network.onion
 
 ## Fully distributed peer-to-peer social network using onion routing
@@ -36,3 +39,20 @@ http://play.google.com/store/apps/details?id=onion.network
 http://onionapps.github.io/Network.onion/
 
 Author: http://github.com/onionApps - jkrnk73uid7p5thz.onion - bitcoin:1kGXfWx8PHZEVriCNkbP5hzD15HS4AyKf
+
+
+
+
+## Building
+- Clone this repository
+- (Optionally, replace the included Tor binaries at /bin/ with your own and run /bin/pack.sh)
+- (Get Android Studio)
+- Open project
+- Hit the run button
+
+Tor binaries: This repository already contains Tor binaries for a few different platforms and Android versions. If you want to build everything from source, you'd have to replace them. Building Tor for Android can be a bit tricky, but there are a few instructions on the web. If your Network.onion build only needs to work on one platform, you can simply replace all four files with the same binary; overhead will be compressed away. You could probably also extract the Tor binary from some other Android app if you trust it more and drop it in here. 
+
+
+
+## 
+
