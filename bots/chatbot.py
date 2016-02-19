@@ -12,8 +12,6 @@ urls = (
   '.*', 'chatbot'
 )
 
-#lastmessage = ""
-
 history = deque()
 for i in range(0, len(answers) / 2):
 	history.append("")
@@ -24,14 +22,6 @@ class chatbot:
 		time.sleep(1)
 		print q.t, q.a, q.n
 		print "<", q.m
-		
-		#global lastmessage
-		#m = ""
-		#while True:
-		#	m = random.choice(answers)
-		#	if m != lastmessage:
-		#		break;
-		#lastmessage = m;
 		
 		global history
 		m = ""
