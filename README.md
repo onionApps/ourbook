@@ -2,7 +2,7 @@
 
 ## Fully distributed peer-to-peer social network using onion routing!
 
-![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9-2-1.png)
+![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9.png)
 
 Conventional social networks store all user data on central servers. This leads to several issues. Information has to be sold to advertising companies to finance the centralized server infrastructure. Users are exposed to surveillance and censorship. In some cases, users are even subject to political persecution.
 
