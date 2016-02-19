@@ -39,6 +39,6 @@ You can also run Network.onion on VirtualBox
 - Create a Linux box ("Other Linux"), and start or install Android
 - Setup NAT to allow ADB (Network -> Advanced -> Port Redirection -> Guest Port = 5555, Host Port = 5555)
 - Install Android Debug Tools (eg. ``` sudo apt-get install android-tools-adb ```)
-- ``` adb connect localhost:5555 ```
+- Connect to the device ``` adb connect localhost:5555 ```
 - Navigate to your Network.onion .APK
-- ``` adb install app-release.apk ```
+- Install Network.onion ``` adb install app-release.apk ```
