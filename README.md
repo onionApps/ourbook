@@ -1,4 +1,6 @@
-## Fully distributed peer-to-peer social network using onion routing!
+# Network.onion
+
+## Fully distributed peer-to-peer social network using onion routing
 
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9.png)
 
