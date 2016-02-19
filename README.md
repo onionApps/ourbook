@@ -1,4 +1,4 @@
---- ... REPOSITORY UNDER CONSTRUCTION ... ---
+--- UNDER CONSTRUCTION ---
 
 
 # Network.onion
