@@ -18,7 +18,7 @@ Network.onion is different! All your data is stored on your own device. No centr
 - Private chat
 
 
-![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra8.png)
+![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9.png)
 
 
 ## Screenshots
