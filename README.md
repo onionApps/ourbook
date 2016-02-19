@@ -1,6 +1,3 @@
---- UNDER CONSTRUCTION ---
-
-
 # Network.onion
 
 ## Fully distributed peer-to-peer social network using onion routing
