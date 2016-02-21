@@ -173,6 +173,11 @@ public class Server {
             return;
         }
 
+        if(uri.getPath().equals("/r")) {
+            response.setContentPlain(FriendTool.getInstance(context).handleUpdate(uri) ? "1" : "0");
+            return;
+        }
+
     }
 
     public String getSocketName() {

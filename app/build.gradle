@@ -12,7 +12,7 @@ android {
         //versionCode 5
         //versionName "5"
 
-        versionCode 701
+        versionCode 703
         versionName "v7"
 
         minSdkVersion 14

@@ -41,7 +41,6 @@ public class FriendTool {
     }
 
     public boolean handleUnfriend(Uri uri) {
-
         String dest = uri.getQueryParameter("dest");
         String addr = uri.getQueryParameter("addr");
         String sign = uri.getQueryParameter("sign");
@@ -66,15 +65,11 @@ public class FriendTool {
         ItemDatabase.getInstance(context).delete("friend", addr);
 
         return true;
-
     }
 
     public boolean doSendUnfriend(String dest) {
-
         String addr = Tor.getInstance(context).getID();
-
         String sign = Utils.base64encode(Tor.getInstance(context).sign(buildUnfriendMessage(dest, addr)));
-
         String pkey = Utils.base64encode(Tor.getInstance(context).pubkey());
 
         String uri = "http://" + dest + ".onion/u?";
@@ -93,7 +88,6 @@ public class FriendTool {
             log("sendUnfriend err");
             return false;
         }
-
     }
 
     public void startSendUnfriend(final String dest) {
@@ -110,6 +104,84 @@ public class FriendTool {
         RequestDatabase.getInstance(context).removeIncoming(address);
         ItemDatabase.getInstance(context).delete("friend", address);
         FriendTool.getInstance(context).startSendUnfriend(address);
+    }
+
+    public boolean handleUpdate(Uri uri) {
+        String dest = uri.getQueryParameter("dest");
+        String addr = uri.getQueryParameter("addr");
+        String time = uri.getQueryParameter("time");
+        String sign = uri.getQueryParameter("sign");
+        String pkey = uri.getQueryParameter("pkey");
+
+        if (dest == null || addr == null || sign == null || pkey == null) {
+            log("Parameter missing");
+            return false;
+        }
+
+        if (!dest.equals(Tor.getInstance(context).getID())) {
+            log("Wrong destination");
+            return false;
+        }
+
+        if (!Tor.getInstance(context).checksig(addr, Utils.base64decode(pkey), Utils.base64decode(sign), (dest + " " + addr + " " + time).getBytes(Utils.utf8))) {
+            log("Invalid signature");
+            return false;
+        }
+        log("Signature OK");
+
+        new ItemTask(context, addr, "name").execute2();
+        new ItemTask(context, addr, "thumb").execute2();
+
+        return true;
+    }
+
+
+
+    volatile long requestGeneration = 1;
+
+    private boolean requestUpdate(String dest) {
+        log("requestUpdate " + dest);
+        String addr = Tor.getInstance(context).getID();
+        String time = "" + System.currentTimeMillis();
+        String pkey = Utils.base64encode(Tor.getInstance(context).pubkey());
+        String sign = Utils.base64encode(Tor.getInstance(context).sign((dest + " " + addr + " " + time).getBytes(Utils.utf8)));
+        try {
+            return "1".equals(
+                    HttpClient.get(context,
+                            new OnionUrlBuilder(dest, "r")
+                                    .arg("dest", dest)
+                                    .arg("addr", addr)
+                                    .arg("time", time)
+                                    .arg("pkey", pkey)
+                                    .arg("sign", sign)
+                                    .build()));
+        } catch (IOException ex) {
+            return false;
+        }
+    }
+
+    private void requestUpdates2() {
+        requestGeneration++;
+        long currentRequestGeneration = requestGeneration;
+
+        ItemResult itemResult = ItemDatabase.getInstance(context).get("friend", "", 12);
+        for(int i = 0; i < itemResult.size(); i++) {
+            if(requestGeneration > currentRequestGeneration) {
+                log("abort");
+            }
+            String addr = itemResult.at(i).key();
+            boolean ok = requestUpdate(addr);
+            log("update " + addr + " " + ok);
+        }
+    }
+
+    public void requestUpdates() {
+        new Thread() {
+            @Override
+            public void run() {
+                requestUpdates2();
+            }
+        }.start();
     }
 
 }

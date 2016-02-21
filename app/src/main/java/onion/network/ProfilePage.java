@@ -41,25 +41,15 @@ public class ProfilePage extends BasePage {
 
     public static final int REQUEST_PHOTO = 3;
     public static Row[] rows = {
-
             new Row("name", "Name", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_VARIATION_PERSON_NAME),
-
             new Row("location", "Location", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("lang", "Languages", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("occupation", "Occupation", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("interests", "Interests", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("hobbies", "Hobbies", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("website", "Website", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("about", "About me", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
             new Row("bio", "Bio", InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE),
-
     };
     LinearLayout contentView;
     int REQUEST_TAKE_PHOTO = 19;
@@ -165,6 +155,8 @@ public class ProfilePage extends BasePage {
 
                                 activity.load();
 
+                                FriendTool.getInstance(context).requestUpdates();
+
                             }
                         })
                         .show();
@@ -191,6 +183,8 @@ public class ProfilePage extends BasePage {
         }
 
         load();
+
+        FriendTool.getInstance(context).requestUpdates();
     }
 
     void clear(JSONObject o, String key) {

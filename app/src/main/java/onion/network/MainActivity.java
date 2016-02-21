@@ -577,22 +577,15 @@ public class MainActivity extends AppCompatActivity {
             final String a = address;
 
             new ItemTask(this, a, "name", "", 1) {
-
                 @Override
                 protected void onProgressUpdate(ItemResult... values) {
-
                     Item item = values[0].one();
-
                     nameItemResult = values[0];
-
                     for (BasePage page : pages) {
                         page.onNameItem(item);
                     }
-
                     if (!address.isEmpty()) {
-
                         name = item.json().optString("name");
-
                         if (name.isEmpty()) {
                             getSupportActionBar().setTitle(a);
                             getSupportActionBar().setSubtitle(null);
@@ -600,7 +593,6 @@ public class MainActivity extends AppCompatActivity {
                             getSupportActionBar().setTitle(name);
                             getSupportActionBar().setSubtitle(a);
                         }
-
                         if (db.hasKey("friend", a)) {
                             Item it = db.getByKey("friend", address);
                             if (it != null) {
@@ -614,9 +606,7 @@ public class MainActivity extends AppCompatActivity {
                                 db.put(new Item(it.type(), it.key(), it.index(), o));
                             }
                         }
-
                     }
-
                 }
             }.execute2();
 

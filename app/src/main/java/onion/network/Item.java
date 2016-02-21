@@ -122,16 +122,35 @@ public class Item {
             }
         }
 
+        // update friend
         if ("friend".equals(_type)) {
-            ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "thumb", "", 1);
-            if (rs.size() > 0) {
-                String thumb = rs.one().json().optString("thumb");
-                try {
-                    json.put("thumb", thumb);
-                } catch (JSONException ex) {
-                    throw new RuntimeException(ex);
+
+            // thumb
+            {
+                ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "thumb", "", 1);
+                if (rs.size() > 0) {
+                    String thumb = rs.one().json().optString("thumb");
+                    try {
+                        json.put("thumb", thumb);
+                    } catch (JSONException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
+
+            // name
+            {
+                ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "name", "", 1);
+                if (rs.size() > 0) {
+                    String name = rs.one().json().optString("name");
+                    try {
+                        json.put("name", name);
+                    } catch (JSONException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+
         }
 
         // set flags if it's my meta

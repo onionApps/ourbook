@@ -8,30 +8,56 @@
     <include layout="@layout/status_bar_top" />
 
 
-    <TextView
+    <LinearLayout
         android:id="@+id/no_msg"
-        android:gravity="center"
-        android:text="Messaging disabled on remote device."
-        android:padding="12sp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:text="Messaging disabled on remote device."
+            android:padding="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="#bbbbbb"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+    </LinearLayout>
 
-
-    <TextView
+    <LinearLayout
         android:id="@+id/msg_from_friends"
-        android:gravity="center"
-        android:text="Add as friend or change settings to receive messages."
-        android:padding="12sp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:text="Add as friend or change settings to receive messages."
+            android:padding="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="#bbbbbb"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+    </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:id="@+id/msg_from_none"
-        android:gravity="center"
-        android:text="Instant messenger disabled. Change settings to receive messages."
-        android:padding="12sp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:gravity="center"
+            android:text="Instant messenger disabled. Change settings to receive messages."
+            android:padding="12sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:background="#bbbbbb"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+    </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView

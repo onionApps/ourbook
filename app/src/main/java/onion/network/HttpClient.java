@@ -96,7 +96,7 @@ public class HttpClient {
             if (tls) {
                 log("tls");
                 SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-                socket = factory.createSocket(socket, null, -1, true);
+                socket = factory.createSocket(socket, uri.getHost(), uri.getPort(), true);
             }
 
 

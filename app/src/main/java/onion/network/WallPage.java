@@ -42,10 +42,11 @@ public class WallPage extends BasePage {
     LinearLayout contentView;
     View wallScroll;
     int count = 5;
-    String TAG = "Wall";
+    String TAG = "WallPage";
     int REQUEST_PHOTO = 74;
     int REQUEST_TAKE_PHOTO = 9;
     String postEditText = null;
+
     String smore;
     int imore;
     View vmore, fmore;
@@ -84,7 +85,6 @@ public class WallPage extends BasePage {
                 return false;
             }
         });
-
         vmore = findViewById(R.id.wallLoadMore);
         fmore = findViewById(R.id.wallLoadMoreFrame);
 
@@ -492,6 +492,7 @@ public class WallPage extends BasePage {
             protected void onPostExecute(ItemResult itemResult) {
                 fill(itemResult, true);
             }
+
         }.execute2();
     }
 
