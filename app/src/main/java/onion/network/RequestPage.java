@@ -53,6 +53,7 @@ public class RequestPage extends BasePage {
                         RequestDatabase.getInstance(activity).removeIncoming(addr);
                         activity.addFriend(addr, name);
                         load();
+                        activity.blink(R.drawable.ic_people_white_36dp);
                     }
                 });
                 viewHolder.decline.setOnClickListener(new View.OnClickListener() {

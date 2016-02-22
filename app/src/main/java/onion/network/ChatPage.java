@@ -205,7 +205,7 @@ public class ChatPage extends BasePage implements ChatClient.OnMessageSentListen
     public String getBadge() {
         int n = chatDatabase.getIncomingMessageCount(activity.address);
         if (n <= 0) return "";
-        if (n >= 10) return "X";
+        if (n >= 10) return "N";
         return "" + n;
     }
 

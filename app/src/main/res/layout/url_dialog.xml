@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--
+            <RadioGroup
+                android:id="@+id/link_type"
+                android:paddingTop="8dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <FrameLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"></FrameLayout>
+                <RadioButton
+                    android:id="@+id/link_type_contact"
+                    android:text="Contact"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/link_type_onion"
+                    android:text="Onion"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:id="@+id/link_type_clearnet"
+                    android:text="Clearnet"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+
+            <TextView
+                android:textColor="#666"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="network.onion/fosuehnvjkdzshaw/"
+                android:id="@+id/link_text" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Copy"
+                    android:id="@+id/link_copy" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:id="@+id/link_share" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Open"
+                    android:id="@+id/link_view" />
+            </LinearLayout>
+            -->
+
+
+
+
+
+
+
+
+
+
+
+            <!--
+            <TextView
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#888"
+                android:text="ID: fosuehnvjkdzshaw"
+                android:id="@+id/onion_id" />
+                -->
+
+            <!--
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"></FrameLayout>
+                -->
+
+
+
+            <TextView
+                android:text="Hidden Service Link"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!--
+            <TextView
+                android:text="Fully anonymous Hidden Service URL that allows people to contact you or view a preview of your Network.onion profile using Tor-enabled web browsers."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+                -->
+            <TextView
+                android:paddingBottom="2dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#376"
+                android:text="fosuehnvjkdzshaw.onion/network.onion"
+                android:id="@+id/onion_link_text" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Copy"
+                    android:id="@+id/onion_link_copy" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:id="@+id/onion_link_share" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Open"
+                    android:id="@+id/onion_link_view" />
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"></FrameLayout>
+
+
+            <TextView
+                android:text="Clearnet Link"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!--
+            <TextView
+                android:text="Network.onion + Web Preview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+                -->
+            <TextView
+                android:paddingBottom="2dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#379"
+                android:text="fosuehnvjkdzshaw.onion.to/network.onion"
+                android:id="@+id/clearnet_link_text" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Copy"
+                    android:id="@+id/clearnet_link_copy" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:id="@+id/clearnet_link_share" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Open"
+                    android:id="@+id/clearnet_link_view" />
+            </LinearLayout>
+
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"></FrameLayout>
+
+            <!--
+            <TextView
+                android:text="Only compatible with the Network.onion app and Tor-enabled web browsers."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="8dp"></FrameLayout>
+                -->
+
+            <TextView
+                android:text="If the links are not available yet, check your network connection and/or wait a few minutes for the hidden service to be registered."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <!--
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"></FrameLayout>
+
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Contact Link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#47c"
+                android:text="network.onion/fosuehnvjkdzshaw/"
+                android:id="@+id/contact_link_text" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Copy"
+                    android:id="@+id/contact_link_copy" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share"
+                    android:id="@+id/contact_link_share" />
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Open"
+                    android:id="@+id/contact_link_view" />
+            </LinearLayout>
+-->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

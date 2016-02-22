@@ -37,17 +37,15 @@
         android:id="@+id/action_menu_scan_qr"
         android:title="Scan QR"
         />
-
-    <item
-        android:id="@+id/action_menu_enter_id"
-        android:title="Enter ID"
-        />
-
     <item
         android:id="@+id/action_menu_show_my_qr"
         android:title="Show QR"
         />
 
+    <item
+        android:id="@+id/action_menu_enter_id"
+        android:title="Enter ID"
+        />
     <item
         android:id="@+id/action_menu_show_my_id"
         android:title="Show ID"
@@ -55,7 +53,7 @@
 
     <item
         android:id="@+id/action_menu_show_uri"
-        android:title="Show URL"
+        android:title="Address"
         />
 
     <item

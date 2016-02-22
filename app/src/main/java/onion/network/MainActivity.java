@@ -10,6 +10,8 @@
 
 package onion.network;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -39,8 +41,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     WallPage wallPage;
     FriendPage friendPage;
+    RequestPage requestPage;
     BasePage[] pages;
     int REQUEST_QR = 12;
     String TAG = "Activity";
@@ -73,6 +79,27 @@ public class MainActivity extends AppCompatActivity {
     ItemResult nameItemResult = new ItemResult();
     Timer timer = null;
     private ViewPager viewPager;
+
+    public void blink(final int id) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i < tabLayout.getTabCount(); i++) {
+                    if(pages[i].getIcon() == id) {
+                        View v = ((ViewGroup)tabLayout.getChildAt(0)).getChildAt(i);
+                        //View v = tabLayout.getTabAt(i).getCustomView();
+                        ObjectAnimator backgroundColorAnimator = ObjectAnimator.ofObject(v,
+                                "backgroundColor",
+                                new ArgbEvaluator(),
+                                0x88ffffff,
+                                0x00ffffff);
+                        backgroundColorAnimator.setDuration(300);
+                        backgroundColorAnimator.start();
+                    }
+                }
+            }
+        });
+    }
 
     public static void addFriendItem(final Context context, String a, String name) {
 
@@ -118,6 +145,77 @@ public class MainActivity extends AppCompatActivity {
         return new Intent(this, MainActivity.class);
     }
 
+    void log(String s) {
+        Log.i(TAG, s);
+    }
+
+    void handleIntent(Intent intent) {
+
+        if (intent != null) {
+            Log.i(TAG, intent.toString());
+            Uri uri = intent.getData();
+            if (uri != null) {
+
+                Log.i(TAG, uri.toString());
+
+            /*if("onionnet".equals(uri.getScheme()) || "onionet".equals(uri.getScheme()) || "onnet".equals(uri.getScheme())) {
+                address = uri.getHost();
+                if(address == null) {
+                    try {
+                        address = uri.get
+                    }
+                }
+                Log.i(TAG, "ONION NETWORK ONIONET URI " + address);
+                return;
+            }*/
+
+                {
+                    try {
+                        String ur = intent.getDataString();
+                        log("ur " + ur);
+                        String scheme = ur.substring(0, ur.indexOf(':'));
+                        log("scheme " + scheme);
+                        String host = ur.substring(ur.indexOf(':') + 1);
+                        log("host1 " + host);
+                        if (host.charAt(0) == '/') host = host.substring(1);
+                        if (host.charAt(0) == '/') host = host.substring(1);
+                        host = host.substring(0, 16);
+                        log("host " + host);
+                        if ("onionnet".equals(scheme) || "onionet".equals(scheme) || "onnet".equals(scheme)) {
+                            address = host;
+                            log("onionnet");
+                        }
+                        return;
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+                if (uri.getHost() != null && uri.getHost().equals("network.onion")) {
+                    List<String> pp = uri.getPathSegments();
+                    address = pp.size() > 0 ? pp.get(0) : null;
+                    name = pp.size() > 1 ? pp.get(1) : "";
+                    Log.i(TAG, "ONION NETWORK URI " + address);
+                    return;
+                }
+
+                if (uri.getHost() != null && uri.getHost().endsWith(".onion") || uri.getHost() != null && uri.getHost().contains(".onion.")) {
+                    if (uri.getPath().equalsIgnoreCase("/network.onion") || uri.getPath().toLowerCase().startsWith("/network.onion/")) {
+                        for (String s : uri.getHost().split("\\.")) {
+                            if (s.length() == 16) {
+                                address = s;
+                                Log.i(TAG, "ONION NETWORK URI " + address);
+                                return;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -128,38 +226,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         address = getIntent().getStringExtra("address");
-        Intent intent = getIntent();
-        if (intent != null) {
-            Log.i(TAG, intent.toString());
-            Uri uri = intent.getData();
-            if (uri != null) {
+        handleIntent(getIntent());
 
-                Log.i(TAG, uri.toString());
-
-                if (uri.getHost().equals("network.onion")) {
-                    List<String> pp = uri.getPathSegments();
-                    address = pp.size() > 0 ? pp.get(0) : null;
-                    name = pp.size() > 1 ? pp.get(1) : "";
-                    Log.i(TAG, "ONION NETWORK URI " + address);
-                }
-
-                if (uri.getHost().endsWith(".onion") || uri.getHost().contains(".onion.")) {
-                    if (uri.getPath().equalsIgnoreCase("/network.onion") || uri.getPath().toLowerCase().startsWith("/network.onion/")) {
-                        for (String s : uri.getHost().split("\\.")) {
-                            if (s.length() == 16) {
-                                address = s;
-                                Log.i(TAG, "ONION NETWORK URI " + address);
-                                break;
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
         if (address == null) address = "";
         address = address.trim().toLowerCase();
         if (address.equals(Tor.getInstance(this).getID())) address = "";
+
 
 
         db = ItemDatabase.getInstance(this);
@@ -173,10 +245,11 @@ public class MainActivity extends AppCompatActivity {
         friendPage = new FriendPage(this);
 
         if (address.isEmpty()) {
+            requestPage = new RequestPage(this);
             pages = new BasePage[]{
                     wallPage,
                     friendPage,
-                    new RequestPage(this),
+                    requestPage,
                     new ConversationPage(this),
                     new ProfilePage(this),
             };
@@ -291,7 +364,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (getIntent().getType().startsWith("image/")) {
-                Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                Uri imageUri = (Uri) getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
                 if (imageUri != null) {
                     Bitmap image = null;
                     try {
@@ -381,21 +454,21 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Add Friend")
                 .setItems(new String[]{
                         "Scan QR",
+                        "Show QR",
                         "Enter ID",
-                        "Show my QR",
-                        "Show my ID",
-                        "Show URL",
+                        "Show ID",
+                        "Address",
                         "Invite Friends",
                 }, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which == 0) scanQR();
-                        if (which == 1) showEnterId();
+                        if (which == 1) showQR();
 
-                        if (which == 2) showQR();
+                        if (which == 2) showEnterId();
                         if (which == 3) showId();
 
-                        if (which == 4) showUri();
+                        if (which == 4) showUrl();
 
                         if (which == 5) inviteFriend();
                     }
@@ -711,7 +784,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_menu_show_uri) {
-            showUri();
+            showUrl();
         }
 
         if (id == R.id.action_menu_scan_qr) {
@@ -757,7 +830,7 @@ public class MainActivity extends AppCompatActivity {
 
     void showId() {
         final String id = getID();
-        new AlertDialog.Builder(this)
+        /*new AlertDialog.Builder(this)
                 .setTitle("" + id)
                 .setNegativeButton("Close", null)
                 .setNeutralButton("Copy to clipboard", new DialogInterface.OnClickListener() {
@@ -768,10 +841,28 @@ public class MainActivity extends AppCompatActivity {
                         snack("ID copied to clipboard.");
                     }
                 })
+                .show();*/
+        new AlertDialog.Builder(this)
+                .setTitle("ID: " + id)
+                .setNegativeButton("Copy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        clipboard.setText(id);
+                        snack("ID copied to clipboard.");
+                    }
+                })
+                .setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, id).setType("text/plain"));
+                    }
+                })
                 .show();
     }
 
-    void showUri() {
+    void showUrl() {
+        /*
         final String uri = "http://" + getID() + ".onion/network.onion";
         new AlertDialog.Builder(this)
                 .setTitle(uri)
@@ -796,7 +887,105 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+                */
+        final View v = getLayoutInflater().inflate(R.layout.url_dialog, null);
+
+        //((TextView)v.findViewById(R.id.contact_link_text)).setText(String.format("network.onion/%s/%s", getID(), name));
+
+        //((TextView) v.findViewById(R.id.onion_id)).setText("ID: " + getID());
+
+        {
+            final String onionLink = String.format("%s.onion/network.onion", getID());
+            ((TextView) v.findViewById(R.id.onion_link_text)).setText(onionLink);
+            v.findViewById(R.id.onion_link_copy).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    clipboard.setText(onionLink);
+                    toast("Link copied to clipboard.");
+                }
+            });
+            v.findViewById(R.id.onion_link_share).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, "http://" + onionLink).setType("text/plain"));
+                }
+            });
+            v.findViewById(R.id.onion_link_view).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + onionLink)));
+                }
+            });
+        }
+
+        {
+            final String clearnetLink = String.format("%s.onion.to/network.onion", getID());
+            ((TextView) v.findViewById(R.id.clearnet_link_text)).setText(clearnetLink);
+            v.findViewById(R.id.clearnet_link_copy).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    clipboard.setText(clearnetLink);
+                    toast("Link copied to clipboard.");
+                }
+            });
+            v.findViewById(R.id.clearnet_link_share).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_SEND).putExtra(Intent.EXTRA_TEXT, "http://" + clearnetLink).setType("text/plain"));
+                }
+            });
+            v.findViewById(R.id.clearnet_link_view).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://" + clearnetLink)));
+                }
+            });
+        }
+
+
+
+        /*
+        final RadioGroup link_type = ((RadioGroup)v.findViewById(R.id.link_type));
+        final TextView link_text = (TextView)v.findViewById(R.id.link_text);
+        final Runnable update = new Runnable() {
+            @Override
+            public void run() {
+                switch(link_type.getCheckedRadioButtonId()) {
+                    case R.id.link_type_contact:
+                        link_text.setText(String.format("network.onion/%s/%s", getID(), name));
+                        break;
+                    case R.id.link_type_onion:
+                        link_text.setText(String.format("%s.onion/network.onion", getID()));
+                        break;
+                    case R.id.link_type_clearnet:
+                        link_text.setText(String.format("%s.onion.to/network.onion", getID()));
+                        break;
+                }
+            }
+        };
+        link_type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                update.run();
+            }
+        });
+        update.run();
+        ((RadioButton)v.findViewById(R.id.link_type_clearnet)).setChecked(true);
+        */
+
+        new AlertDialog.Builder(this)
+                .setView(v)
+                .show();
+
     }
+
+
+    void toast(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
 
     void publishPost(JSONObject o) {
         long k = System.currentTimeMillis();

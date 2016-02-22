@@ -409,12 +409,14 @@ public class Site {
             response.setStatus(404, "Not Found");
         }
 
-        if (more) {
-            content += tmore;
-        }
+
 
         if (empty) {
             content += tempty;
+        }
+        else
+        if (more) {
+            content += tmore;
         }
 
 
@@ -425,6 +427,12 @@ public class Site {
         {
             String url = "http://" + uri.getHost() + "/network.onion";
             page = treplace(page, "url", html(url));
+        }
+
+        {
+            //String url = "http://network.onion/" + uri.getHost();
+            String url = "onionnet:" + Tor.getInstance(context).getID();
+            page = treplace(page, "url2", html(url));
         }
 
         page = treplace(page, "name", htmlname(name));

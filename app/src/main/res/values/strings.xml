@@ -6,7 +6,25 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--
     <string name="invitation_text">%1$s\n\nLet\'s connect via Network.onion, a fully decentralized peer-to-peer social network!\n\nContact link\nnetwork.onion/%2$s/%3$s\n(click after installation to connect)\n\nID: %2$s\n(copy manually if the contact link isn\'t shown correctly)\n</string>
+    -->
+
+    <string name="invitation_text">
+        %1$s\n
+        \n
+        Let\'s connect via Network.onion, a fully decentralized peer-to-peer social network!\n
+        \n
+        contact: network.onion/%2$s/%3$s\n
+        (click after installation to connect)\n
+        \n
+        onion: http://%2$s.onion/network.onion\n
+        \n
+        clearnet: http://%2$s.onion.to/network.onion\n
+        \n
+        ID: %2$s\n
+        (copy manually if the links are not displayed correctly)\n
+    </string>
 
 
 

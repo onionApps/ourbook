@@ -143,6 +143,14 @@ public class RequestTool {
             }
         }.start();
 
+        MainActivity mainActivity = MainActivity.getInstance();
+        if(mainActivity != null) {
+            mainActivity.blink(R.drawable.ic_group_add_white_36dp);
+            if(mainActivity.requestPage != null) {
+                mainActivity.requestPage.load();
+            }
+        }
+
         return true;
 
     }

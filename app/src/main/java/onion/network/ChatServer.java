@@ -113,7 +113,7 @@ public class ChatServer {
         if (acceptMessage) {
             chatDatabase.addMessage(sender, receiver, content, ltime, true, false);
             callOnMessageReceivedListeners();
-            Notifier.getInstance(context).msg();
+            Notifier.getInstance(context).msg(sender);
         }
 
         ChatBot chatBot = ChatBot.getInstance(context);

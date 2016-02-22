@@ -182,7 +182,7 @@ public class ProfilePage extends BasePage {
             ItemDatabase.getInstance(getContext()).put(new Item.Builder("name", "", "").put("name", val).build());
         }
 
-        load();
+        activity.load();
 
         FriendTool.getInstance(context).requestUpdates();
     }
@@ -372,7 +372,6 @@ public class ProfilePage extends BasePage {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 save(o, key, textEdit.getText().toString());
-                                                activity.wallPage.load();
                                             }
                                         })
                                         .setNeutralButton("Clear", new DialogInterface.OnClickListener() {
@@ -385,8 +384,7 @@ public class ProfilePage extends BasePage {
                                                     throw new RuntimeException(ex);
                                                 }
                                                 ItemDatabase.getInstance(getContext()).put(new Item("info", "", "", o));
-                                                load();
-                                                activity.wallPage.load();
+                                                activity.load();
                                             }
                                         });
                                 dlg.show();
