@@ -4,7 +4,7 @@
 
 ![](https://raw.githubusercontent.com/onionApps/Network.onion/master/gfx/netfungra9.png)
 
-Conventional social networks store all user data on central servers. This leads to several issues. Users have to give up control over their private data and are exposed surveillance and censorship. Information also has to be sold to advertising companies to cover server operating costs.  
+Conventional social networks store all information on central servers, forcing their users to give up control of their own data, compromising their privacy, and exposing them to surveillance and censorship.
 
 Network.onion is different! All your data is stored on your own device. No central servers are needed. Devices communicate with each other over a decentralized peer-to-peer network. All communication is anonymized and encrypted via Onion Routing (Tor).
 
