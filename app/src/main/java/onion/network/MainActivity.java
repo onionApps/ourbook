@@ -79,14 +79,15 @@ public class MainActivity extends AppCompatActivity {
     ItemResult nameItemResult = new ItemResult();
     Timer timer = null;
     private ViewPager viewPager;
+    ChatPage chatPage;
 
     public void blink(final int id) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                for(int i = 0; i < tabLayout.getTabCount(); i++) {
-                    if(pages[i].getIcon() == id) {
-                        View v = ((ViewGroup)tabLayout.getChildAt(0)).getChildAt(i);
+                for (int i = 0; i < tabLayout.getTabCount(); i++) {
+                    if (pages[i].getIcon() == id) {
+                        View v = ((ViewGroup) tabLayout.getChildAt(0)).getChildAt(i);
                         //View v = tabLayout.getTabAt(i).getCustomView();
                         ObjectAnimator backgroundColorAnimator = ObjectAnimator.ofObject(v,
                                 "backgroundColor",
@@ -184,12 +185,14 @@ public class MainActivity extends AppCompatActivity {
                         if ("onionnet".equals(scheme) || "onionet".equals(scheme) || "onnet".equals(scheme)) {
                             address = host;
                             log("onionnet");
+                            return;
                         }
-                        return;
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
+
+                Log.i(TAG, "host " + uri.getHost());
 
                 if (uri.getHost() != null && uri.getHost().equals("network.onion")) {
                     List<String> pp = uri.getPathSegments();
@@ -254,10 +257,11 @@ public class MainActivity extends AppCompatActivity {
                     new ProfilePage(this),
             };
         } else {
+            chatPage = new ChatPage(this);
             pages = new BasePage[]{
                     wallPage,
                     friendPage,
-                    new ChatPage(this),
+                    chatPage,
                     new ProfilePage(this),
             };
         }
@@ -458,7 +462,7 @@ public class MainActivity extends AppCompatActivity {
                         "Enter ID",
                         "Show ID",
                         "Address",
-                        "Invite Friends",
+                        "Invite friends",
                 }, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -590,8 +594,14 @@ public class MainActivity extends AppCompatActivity {
         return Tor.getInstance(this).getID();
     }
 
+    String getName() {
+        return address.isEmpty() ? ItemDatabase.getInstance(this).getstr("name") : name;
+    }
+
     void showQR() {
-        String txt = "network.onion " + getID() + " " + name;
+        String n = getName();
+
+        String txt = "network.onion " + getID() + " " + n;
         txt = txt.trim();
 
         Bitmap bitmap = QR.make(txt);
@@ -658,13 +668,8 @@ public class MainActivity extends AppCompatActivity {
                         page.onNameItem(item);
                     }
                     if (!address.isEmpty()) {
-                        name = item.json().optString("name");
-                        if (name.isEmpty()) {
-                            getSupportActionBar().setTitle(a);
-                            getSupportActionBar().setSubtitle(null);
-                        } else {
-                            getSupportActionBar().setTitle(name);
-                            getSupportActionBar().setSubtitle(a);
+                        if(item.json().has("name")) {
+                            name = item.json().optString("name");
                         }
                         if (db.hasKey("friend", a)) {
                             Item it = db.getByKey("friend", address);
@@ -680,6 +685,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     }
+                    updateActionBar();
                 }
             }.execute2();
 
@@ -693,6 +699,23 @@ public class MainActivity extends AppCompatActivity {
 
         fabvis();
 
+        updateActionBar();
+
+    }
+
+    void updateActionBar() {
+        if(address.isEmpty()) {
+            getSupportActionBar().setTitle("Network.onion");
+            getSupportActionBar().setSubtitle(null);
+        } else {
+            if (name.isEmpty()) {
+                getSupportActionBar().setTitle(address);
+                getSupportActionBar().setSubtitle(null);
+            } else {
+                getSupportActionBar().setTitle(name);
+                getSupportActionBar().setSubtitle(address);
+            }
+        }
     }
 
     BasePage currentPage() {
@@ -736,6 +759,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         menu.findItem(R.id.action_add_friend).setVisible(!address.isEmpty() && !db.hasKey("friend", address));
         menu.findItem(R.id.action_friends).setVisible(!address.isEmpty() && db.hasKey("friend", address));
+        menu.findItem(R.id.action_clear_chat).setVisible(!address.isEmpty());
+        menu.findItem(R.id.action_menu_invite_friends).setVisible(address.isEmpty());
         return true;
     }
 
@@ -809,6 +834,22 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_menu_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
+        }
+
+        if(id == R.id.action_clear_chat) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Clear chat")
+                    .setMessage("Do you really want to delete all messages exchanged with this contact?")
+                    .setNegativeButton("No", null)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ChatDatabase.getInstance(MainActivity.this).clearChat(address);
+                            toast("Chat cleared");
+                            chatPage.load();
+                        }
+                    })
+                    .show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -1108,7 +1149,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_REFERRER, url);
         intent.putExtra("customAppUri", url);
 
-        intent.putExtra(Intent.EXTRA_TEXT, String.format(getString(R.string.invitation_text), url, Tor.getInstance(this).getID(), Uri.encode(name)));
+        intent.putExtra(Intent.EXTRA_TEXT, String.format(getString(R.string.invitation_text), url, Tor.getInstance(this).getID(), Uri.encode(getName())));
         intent.setType("text/plain");
 
         startActivity(intent);

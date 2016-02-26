@@ -83,6 +83,7 @@ public class ProfilePage extends BasePage {
                                 ItemDatabase.getInstance(getContext()).put(new Item.Builder("photo", "", "").build());
                                 ItemDatabase.getInstance(getContext()).put(new Item.Builder("thumb", "", "").build());
                                 activity.load();
+                                FriendTool.getInstance(context).requestUpdates();
                             }
                         })
                         .show();
@@ -188,7 +189,7 @@ public class ProfilePage extends BasePage {
     }
 
     void clear(JSONObject o, String key) {
-        save(o, key, null);
+        save(o, key, "name".equals(key) ? "" : null);
     }
 
     public void load() {
@@ -378,12 +379,12 @@ public class ProfilePage extends BasePage {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 clear(o, key);
-                                                try {
+                                                /*try {
                                                     o.put(key, null);
                                                 } catch (JSONException ex) {
                                                     throw new RuntimeException(ex);
                                                 }
-                                                ItemDatabase.getInstance(getContext()).put(new Item("info", "", "", o));
+                                                ItemDatabase.getInstance(getContext()).put(new Item("info", "", "", o));*/
                                                 activity.load();
                                             }
                                         });

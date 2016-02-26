@@ -43,6 +43,16 @@ public class ChatDatabase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        Cursor c = db.rawQuery("PRAGMA secure_delete = true", null);
+        while(c.moveToNext()) {
+            for(int i = 0; i < c.getColumnCount(); i++) {
+                Log.i("secure_delete", "" + c.getColumnName(i) + " " + c.getString(i));
+            }
+        }
+    }
+
     public synchronized void markRead(String address) {
         ContentValues v = new ContentValues();
         v.put("incoming", false);
@@ -65,6 +75,14 @@ public class ChatDatabase extends SQLiteOpenHelper {
         Log.i(TAG, "a " + a);
         Log.i(TAG, "b " + b);
         return getReadableDatabase().rawQuery("SELECT * FROM (SELECT * FROM messages WHERE ((sender=? AND receiver=?) OR (sender=? AND receiver=?)) ORDER BY _id DESC LIMIT 64) ORDER BY _id ASC", new String[]{a, b, b, a});
+    }
+
+    public synchronized void clearChat(String a) {
+        Log.i(TAG, "clearChat");
+        String b = Tor.getInstance(context).getID();
+        Log.i(TAG, "a " + a);
+        Log.i(TAG, "b " + b);
+        getWritableDatabase().delete("messages", "((sender=? AND receiver=?) OR (sender=? AND receiver=?))", new String[]{a, b, b, a});
     }
 
     public Cursor getUnsent(String b) {

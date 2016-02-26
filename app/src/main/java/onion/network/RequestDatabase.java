@@ -15,6 +15,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.HashSet;
 
@@ -38,6 +39,16 @@ public class RequestDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        Cursor c = db.rawQuery("PRAGMA secure_delete = true", null);
+        while(c.moveToNext()) {
+            for(int i = 0; i < c.getColumnCount(); i++) {
+                Log.i("secure_delete", "" + c.getColumnName(i) + " " + c.getString(i));
+            }
+        }
     }
 
     @Override

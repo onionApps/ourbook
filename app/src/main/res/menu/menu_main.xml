@@ -57,8 +57,13 @@
         />
 
     <item
+        android:id="@+id/action_clear_chat"
+        android:title="Clear chat"
+        />
+
+    <item
         android:id="@+id/action_menu_invite_friends"
-        android:title="Invite Friends"
+        android:title="Invite friends"
         />
 
     <item

@@ -51,6 +51,16 @@ public class ItemDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE INDEX itemindex ON items ( itemtype, itemindex )");
     }
 
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        Cursor c = db.rawQuery("PRAGMA secure_delete = true", null);
+        while(c.moveToNext()) {
+            for(int i = 0; i < c.getColumnCount(); i++) {
+                Log.i("secure_delete", "" + c.getColumnName(i) + " " + c.getString(i));
+            }
+        }
+    }
+
     public void delete(String type, String key) {
         getWritableDatabase().delete("items", "itemtype=? AND itemkey=?", new String[]{type, key});
     }

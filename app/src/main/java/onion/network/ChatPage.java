@@ -226,8 +226,9 @@ public class ChatPage extends BasePage implements ChatClient.OnMessageSentListen
         markReadIfVisible();
 
         cursor = chatDatabase.getMessages(address);
-        if (oldCursor != null)
+        if (oldCursor != null) {
             oldCursor.close();
+        }
         adapter.notifyDataSetChanged();
 
         cursor.moveToLast();
