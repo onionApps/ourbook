@@ -1,4 +1,4 @@
-# Network.onion
+# ourbook
 
 ## Fully distributed peer-to-peer social network using onion routing
 
@@ -6,7 +6,7 @@
 
 Conventional social networks store all information on central servers, forcing their users to give up control of their own data, compromising their privacy, and exposing them to surveillance and censorship.
 
-Network.onion is different! All your data is stored on your own device. No central servers are needed. Devices communicate with each other over a decentralized peer-to-peer network. All communication is anonymized and encrypted via Onion Routing (Tor).
+ourbook is different! All your data is stored on your own device. No central servers are needed. Devices communicate with each other over a decentralized peer-to-peer network. All communication is anonymized and encrypted via Onion Routing (Tor).
 
 - Anonymous, peer-to-peer, fully decentralized
 - Data remains on the users' own devices
