@@ -101,10 +101,12 @@ public class ItemTask extends AsyncTask<Void, ItemResult, ItemResult> {
 
             ItemResult result = database.get(type, index, count);
 
+
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (Exception ex) {
             }
+
 
             publishProgress(result);
 
@@ -112,6 +114,8 @@ public class ItemTask extends AsyncTask<Void, ItemResult, ItemResult> {
 
         } else {
 
+
+            /*
             // remote request
 
             ItemCache itemCache = ItemCache.getInstance(context);
@@ -149,6 +153,54 @@ public class ItemTask extends AsyncTask<Void, ItemResult, ItemResult> {
                 publishProgress(itemResult);
                 return itemResult;
             }
+            */
+
+
+
+
+            // remote request
+
+            ItemCache itemCache = ItemCache.getInstance(context);
+
+            ItemResult finalResult = null;
+
+            // view current cache contents
+            {
+                ItemResult itemResult = itemCache.get(address, type, index, count);
+                itemResult.setLoading(true);
+                itemResult.setOk(true);
+                publishProgress(itemResult);
+                finalResult = itemResult;
+            }
+
+            // try to load and view real data
+            boolean loadOk = false;
+            try {
+                String url = getUrl();
+                byte[] data = HttpClient.getbin(context, url);
+                ItemResult itemResult = process(data, true, false);
+                if (itemResult != null) {
+                    itemCache.delete(address, type, index, itemResult.more());
+                    for (int i = 0; i < itemResult.size(); i++) {
+                        itemCache.put(address, itemResult.at(i));
+                    }
+                    loadOk = true;
+                    finalResult = itemResult;
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            // publish final result
+            {
+                //ItemResult itemResult = itemCache.get(address, type, index, count);
+                ItemResult itemResult = finalResult;
+                itemResult.setLoading(false);
+                itemResult.setOk(loadOk);
+                publishProgress(itemResult);
+                return itemResult;
+            }
+
 
         }
 

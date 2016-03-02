@@ -545,6 +545,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public String getAppName() {
+        return Utils.getAppName(this);
+    }
+
     void contactDialog(String id, String name) {
 
         boolean isFriend = db.hasKey("friend", id);
@@ -705,7 +709,7 @@ public class MainActivity extends AppCompatActivity {
 
     void updateActionBar() {
         if(address.isEmpty()) {
-            getSupportActionBar().setTitle("Network.onion");
+            getSupportActionBar().setTitle(getAppName());
             getSupportActionBar().setSubtitle(null);
         } else {
             if (name.isEmpty()) {
@@ -1149,7 +1153,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_REFERRER, url);
         intent.putExtra("customAppUri", url);
 
-        intent.putExtra(Intent.EXTRA_TEXT, String.format(getString(R.string.invitation_text), url, Tor.getInstance(this).getID(), Uri.encode(getName())));
+        intent.putExtra(Intent.EXTRA_TEXT, String.format(getString(R.string.invitation_text), url, Tor.getInstance(this).getID(), Uri.encode(getName()), getAppName()));
         intent.setType("text/plain");
 
         startActivity(intent);

@@ -127,7 +127,7 @@ public class Item {
 
             // thumb
             {
-                ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "thumb", "", 1);
+                ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "thumb");
                 if (rs.size() > 0) {
                     String thumb = rs.one().json().optString("thumb");
                     try {
@@ -140,7 +140,7 @@ public class Item {
 
             // name
             {
-                ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "name", "", 1);
+                ItemResult rs = ItemCache.getInstance(context).get(json.optString("addr"), "name");
                 if (rs.size() > 0) {
                     String name = rs.one().json().optString("name");
                     try {

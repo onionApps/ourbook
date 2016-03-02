@@ -63,9 +63,10 @@ public class ProfilePage extends BasePage {
             @Override
             public void onClick(View v) {
                 //Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                activity.startActivityForResult(intent, REQUEST_PHOTO);
+                //Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                //intent.setType("image/*");
+                //activity.startActivityForResult(intent, REQUEST_PHOTO);
+                startImageChooser(REQUEST_PHOTO);
             }
         });
         findViewById(R.id.choose_photo).setVisibility(address.isEmpty() ? View.VISIBLE : View.GONE);
@@ -120,19 +121,30 @@ public class ProfilePage extends BasePage {
             return;
 
         if (requestCode == REQUEST_PHOTO || requestCode == REQUEST_TAKE_PHOTO) {
-            try {
-                Uri uri = data.getData();
+            //try {
 
-                final Bitmap bmp;
+                //Uri uri = data.getData();
+
+                Bitmap bmp;
 
                 if (requestCode == REQUEST_PHOTO) {
-                    bmp = ThumbnailUtils.extractThumbnail(MediaStore.Images.Media.getBitmap(activity.getContentResolver(), uri), 320, 320);
+                    //bmp = ThumbnailUtils.extractThumbnail(MediaStore.Images.Media.getBitmap(activity.getContentResolver(), uri), 320, 320);
+                    bmp = getActivityResultBitmap(data);
                 } else { // REQUEST_TAKE_PHOTO
-                    bmp = ThumbnailUtils.extractThumbnail((Bitmap) data.getExtras().get("data"), 320, 320);
+                    //bmp = ThumbnailUtils.extractThumbnail((Bitmap) data.getExtras().get("data"), 320, 320);
+                    bmp = (Bitmap) data.getExtras().get("data");
                 }
+
+                if(bmp == null) {
+                    return;
+                }
+
+                bmp = ThumbnailUtils.extractThumbnail(bmp, 320, 320);
 
                 View view = activity.getLayoutInflater().inflate(R.layout.profile_photo_dialog, null);
                 ((ImageView) view.findViewById(R.id.imageView)).setImageBitmap(bmp);
+
+                final Bitmap fbmp = bmp;
 
                 new AlertDialog.Builder(activity)
                         .setTitle("Set Photo")
@@ -143,12 +155,12 @@ public class ProfilePage extends BasePage {
                             public void onClick(DialogInterface dialog, int which) {
 
                                 {
-                                    String v = Utils.encodeImage(bmp);
+                                    String v = Utils.encodeImage(fbmp);
                                     ItemDatabase.getInstance(getContext()).put(new Item.Builder("photo", "", "").put("photo", v).build());
                                 }
 
                                 {
-                                    String v = Utils.encodeImage(ThumbnailUtils.extractThumbnail(bmp, 84, 84));
+                                    String v = Utils.encodeImage(ThumbnailUtils.extractThumbnail(fbmp, 84, 84));
                                     ItemDatabase.getInstance(getContext()).put(new Item.Builder("thumb", "", "").put("thumb", v).build());
                                 }
 
@@ -162,9 +174,9 @@ public class ProfilePage extends BasePage {
                         })
                         .show();
 
-            } catch (IOException ex) {
+            /*} catch (IOException ex) {
                 Snackbar.make(this, "Error", Snackbar.LENGTH_SHORT).show();
-            }
+            }*/
         }
     }
 

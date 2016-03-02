@@ -435,6 +435,7 @@ public class Site {
             page = treplace(page, "url2", html(url));
         }
 
+        page = treplace(page, "appname", html(Utils.getAppName(context)));
         page = treplace(page, "name", htmlname(name));
         page = treplace(page, "addr", html(addr));
         page = treplace(page, "img", htmlthumb(db.getstr("thumb"), 75, 75));

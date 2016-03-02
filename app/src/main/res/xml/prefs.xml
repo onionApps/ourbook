@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Preference
-        android:key="clearcache"
-        android:title="Clear Cache"
-        android:summary="Remove all cache data"
-        />
+
 
     <CheckBoxPreference
         android:key="notify"
@@ -36,6 +32,25 @@
         android:title="Web Profile"
         android:summary="Allow a preview of your profile to be viewed using normal web browsers"
         />
+
+
+
+
+    <PreferenceCategory
+        android:key="cachecat"
+        android:title="Cache"
+        >
+        <CheckBoxPreference
+            android:key="diskcache"
+            android:defaultValue="true"
+            android:title="Use Disk Cache"
+            />
+        <Preference
+            android:key="clearcache"
+            android:title="Clear Cache"
+            android:summary="Remove all cache data"
+            />
+    </PreferenceCategory>
 
 
 

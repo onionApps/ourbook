@@ -12,7 +12,11 @@ package onion.network;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
 import android.widget.FrameLayout;
+
+import java.io.IOException;
 
 public abstract class BasePage extends FrameLayout {
 
@@ -80,6 +84,35 @@ public abstract class BasePage extends FrameLayout {
 
     public String getPageIDString() {
         return "";
+    }
+
+    public void toast(String s) {
+        activity.toast(s);
+    }
+
+    public Bitmap getActivityResultBitmap(Intent intent) {
+        try {
+            return MediaStore.Images.Media.getBitmap(activity.getContentResolver(), intent.getData());
+        } catch (IOException ex) {
+            toast("File not found");
+            return null;
+        } catch(SecurityException ex) {
+            toast("Access denied");
+            return null;
+        }
+    }
+
+    private void log(String s) {
+        activity.log(s);
+    }
+
+    protected void startImageChooser(int id) {
+        log("image chooser " + id);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT).setType("image/*");
+        //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        activity.startActivityForResult(intent, id);
     }
 
 }

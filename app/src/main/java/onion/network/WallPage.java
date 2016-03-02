@@ -207,9 +207,10 @@ public class WallPage extends BasePage {
                 @Override
                 public void onClick(View v) {
                     postEditText = textEdit.getText().toString();
-                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                    intent.setType("image/*");
-                    activity.startActivityForResult(intent, REQUEST_PHOTO);
+                    //Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    //intent.setType("image/*");
+                    //activity.startActivityForResult(intent, REQUEST_PHOTO);
+                    startImageChooser(REQUEST_PHOTO);
                     d.cancel();
                 }
             });
@@ -243,12 +244,12 @@ public class WallPage extends BasePage {
         Bitmap bmp = null;
 
         if (requestCode == REQUEST_PHOTO) {
-            try {
-                Uri uri = data.getData();
-                bmp = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), uri);
+            /*try {
+                bmp = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), data.getData());
             } catch (IOException ex) {
                 Snackbar.make(this, "Error", Snackbar.LENGTH_SHORT).show();
-            }
+            }*/
+            bmp = getActivityResultBitmap(data);
         }
 
         if (requestCode == REQUEST_TAKE_PHOTO) {
