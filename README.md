@@ -32,7 +32,7 @@ ourbook is different! All your data is stored on your own device. No central ser
 
 http://play.google.com/store/apps/details?id=onion.network
 
-http://onionapps.github.io/Network.onion/
+http://onionapps.github.io/ourbook/
 
 Author: http://github.com/onionApps - jkrnk73uid7p5thz.onion - bitcoin:1kGXfWx8PHZEVriCNkbP5hzD15HS4AyKf
 
@@ -70,5 +70,5 @@ Network.onion supports the operation of automated bots. Some can be created by s
 
 http://play.google.com/store/apps/details?id=onion.network
 
-http://onionapps.github.io/Network.onion/
+http://onionapps.github.io/ourbook/
 
